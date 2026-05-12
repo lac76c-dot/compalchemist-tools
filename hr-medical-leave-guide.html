@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HR Guide to Medical Leave | CompAlchemist</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1A2C3E;
+    --navy-dark: #0F1E2A;
+    --slate: #2C4A5E;
+    --gold: #C6A43F;
+    --gold-burnt: #B58B2F;
+    --gold-pale: #E6D5B8;
+    --cream: #F5F0E1;
+    --cream-deep: #E8DFCF;
+    --mist: #E8F0F5;
+    --forest: #3A6B4B;
+    --teal: #2F9B9B;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  @media print {
+    body { background: white; }
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: var(--navy-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px 70px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 480px; height: 480px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(58,107,75,0.14) 0%, transparent 70%);
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -60px;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(198,164,63,0.10) 0%, transparent 70%);
+  }
+
+  .cover-brand { display: flex; flex-direction: column; gap: 6px; }
+  .cover-logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700;
+    color: var(--gold); letter-spacing: 0.05em;
+  }
+  .cover-tagline {
+    font-size: 11px; color: rgba(255,255,255,0.4);
+    letter-spacing: 0.12em; text-transform: uppercase;
+  }
+
+  .cover-hex {
+    position: absolute; top: 50px; right: 70px; opacity: 0.05;
+  }
+
+  .cover-center {
+    flex: 1; display: flex; flex-direction: column;
+    justify-content: center; padding: 60px 0 40px;
+    position: relative; z-index: 1;
+  }
+
+  .cover-label {
+    font-size: 10px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+  }
+  .cover-label::before {
+    content: ''; display: block; width: 32px; height: 1px; background: var(--gold);
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 50px; font-weight: 700; color: var(--white);
+    line-height: 1.15; margin-bottom: 16px; max-width: 600px;
+  }
+  .cover-title span { color: var(--gold); }
+
+  .cover-subtitle {
+    font-size: 16px; color: rgba(255,255,255,0.58);
+    max-width: 540px; line-height: 1.75; margin-bottom: 48px;
+  }
+
+  .cover-pillars { display: flex; gap: 0; max-width: 580px; }
+  .cover-pillar {
+    flex: 1; border-top: 2px solid var(--gold); padding-top: 14px;
+  }
+  .cover-pillar:not(:last-child) {
+    padding-right: 20px; margin-right: 20px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .cover-pillar-num {
+    font-size: 26px; font-family: 'Playfair Display', serif;
+    color: var(--gold); font-weight: 600; line-height: 1; margin-bottom: 4px;
+  }
+  .cover-pillar-label {
+    font-size: 10px; color: rgba(255,255,255,0.45);
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+
+  .cover-footer {
+    display: flex; justify-content: space-between;
+    align-items: flex-end; position: relative; z-index: 1;
+  }
+  .cover-note {
+    font-size: 10px; color: rgba(255,255,255,0.28);
+    max-width: 400px; line-height: 1.6;
+  }
+  .cover-edition {
+    font-size: 10px; color: rgba(255,255,255,0.22);
+    text-align: right; letter-spacing: 0.08em;
+  }
+
+  /* ── LIFECYCLE BANNER ── */
+  .lifecycle-bar {
+    background: var(--navy);
+    padding: 28px 70px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .lc-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+
+  .lc-step:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -8px; top: 10px;
+    color: var(--gold-pale);
+    font-size: 14px;
+    opacity: 0.5;
+  }
+
+  .lc-dot {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(198,164,63,0.15);
+    border: 1.5px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .lc-label {
+    font-size: 9px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  /* ── PAGES ── */
+  .guide-page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 56px 70px;
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    display: flex; align-items: flex-start; gap: 20px;
+    margin-bottom: 30px; padding-bottom: 18px;
+    border-bottom: 2px solid var(--gold);
+  }
+  .section-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 46px; font-weight: 700; color: var(--gold-pale);
+    line-height: 1; flex-shrink: 0; margin-top: -4px;
+  }
+  .section-phase {
+    font-size: 9px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold-burnt); margin-bottom: 4px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px; font-weight: 700;
+    color: var(--navy); line-height: 1.2;
+  }
+  .section-intro {
+    font-size: 14.5px; color: var(--slate);
+    line-height: 1.8; margin-bottom: 26px;
+  }
+
+  /* ── CALLOUTS ── */
+  .callout {
+    border-radius: 4px; padding: 20px 24px; margin: 24px 0;
+  }
+  .callout-title {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 10px;
+  }
+  .callout p { font-size: 13.5px; line-height: 1.7; }
+
+  .callout-insight { background: var(--navy); color: var(--white); border-left: 4px solid var(--gold); }
+  .callout-insight .callout-title { color: var(--gold); }
+  .callout-insight p { color: rgba(255,255,255,0.82); }
+
+  .callout-human { background: #F0F6F2; border-left: 4px solid var(--forest); }
+  .callout-human .callout-title { color: var(--forest); }
+  .callout-human p { color: var(--navy); }
+
+  .callout-warning { background: #FDF6EC; border-left: 4px solid var(--gold-burnt); }
+  .callout-warning .callout-title { color: var(--gold-burnt); }
+  .callout-warning p { color: var(--navy); }
+
+  .callout-process { background: var(--mist); border-left: 4px solid var(--teal); }
+  .callout-process .callout-title { color: var(--teal); }
+  .callout-process p { color: var(--slate); }
+
+  /* ── DO/DON'T ── */
+  .do-dont-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 22px 0; }
+
+  .do-box, .dont-box { border-radius: 4px; padding: 20px 22px; }
+  .do-box { background: #F0F8F4; border: 1px solid #A8D5B8; }
+  .dont-box { background: #FDF2F0; border: 1px solid #E8B4A8; }
+
+  .do-dont-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; margin-bottom: 12px;
+    display: flex; align-items: center; gap: 7px;
+  }
+  .do-box .do-dont-label { color: #2A7A4B; }
+  .dont-box .do-dont-label { color: #C0392B; }
+
+  .do-dont-icon {
+    width: 18px; height: 18px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; flex-shrink: 0;
+  }
+  .do-box .do-dont-icon { background: #2A7A4B; color: white; }
+  .dont-box .do-dont-icon { background: #C0392B; color: white; }
+
+  .do-dont-list { list-style: none; padding: 0; }
+  .do-dont-list li {
+    font-size: 13px; line-height: 1.6; color: var(--navy);
+    padding: 6px 0 6px 16px; border-bottom: 1px solid rgba(0,0,0,0.06);
+    position: relative;
+  }
+  .do-dont-list li:last-child { border-bottom: none; }
+  .do-box .do-dont-list li::before { content: '→'; position: absolute; left: 0; color: #2A7A4B; font-size: 12px; }
+  .dont-box .do-dont-list li::before { content: '×'; position: absolute; left: 0; color: #C0392B; font-size: 14px; top: 4px; }
+
+  /* ── SCRIPT CARDS ── */
+  .script-card {
+    background: var(--white); border: 1px solid var(--cream-deep);
+    border-radius: 6px; padding: 22px 26px; margin: 16px 0; position: relative;
+  }
+  .script-card::before {
+    content: '"'; font-family: 'Playfair Display', serif;
+    font-size: 64px; color: var(--gold-pale);
+    position: absolute; top: -8px; left: 16px; line-height: 1;
+  }
+  .script-label {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold-burnt);
+    margin-bottom: 10px; padding-left: 24px;
+  }
+  .script-text {
+    font-size: 14px; color: var(--navy); line-height: 1.75;
+    font-style: italic; padding-left: 24px;
+  }
+
+  /* ── STEPS ── */
+  .steps { margin: 22px 0; }
+  .step { display: flex; gap: 20px; margin-bottom: 20px; position: relative; }
+  .step:not(:last-child)::after {
+    content: ''; position: absolute; left: 18px; top: 40px;
+    width: 2px; height: calc(100% - 10px); background: var(--gold-pale);
+  }
+  .step-num {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--navy); color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; position: relative; z-index: 1;
+  }
+  .step-content { padding-top: 6px; flex: 1; }
+  .step-title { font-weight: 600; font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .step-body { font-size: 13.5px; color: var(--slate); line-height: 1.65; }
+
+  /* ── TWO COL ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 20px 0; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 20px 0; }
+
+  .info-card {
+    background: var(--white); border: 1px solid var(--cream-deep);
+    border-radius: 4px; padding: 20px;
+  }
+  .info-card-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gold-burnt);
+    margin-bottom: 12px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--gold-pale);
+  }
+  .info-list { list-style: none; padding: 0; }
+  .info-list li {
+    font-size: 13px; line-height: 1.65; color: var(--slate);
+    padding: 5px 0 5px 16px; position: relative;
+  }
+  .info-list li::before {
+    content: '▸'; position: absolute; left: 0;
+    color: var(--gold); font-size: 10px; top: 7px;
+  }
+
+  /* ── HIGHLIGHT BAND ── */
+  .highlight-band {
+    background: var(--navy); color: var(--white);
+    border-radius: 4px; padding: 22px 28px; margin: 26px 0;
+    display: flex; align-items: center; gap: 22px;
+  }
+  .highlight-band-icon { font-size: 28px; flex-shrink: 0; }
+  .highlight-band-text { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.85); }
+  .highlight-band-text strong { color: var(--gold); }
+
+  /* ── CHECKLIST ── */
+  .checklist { margin: 18px 0; }
+  .check-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 10px 0; border-bottom: 1px solid var(--cream-deep);
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-box {
+    width: 18px; height: 18px; border: 1.5px solid var(--gold);
+    border-radius: 2px; flex-shrink: 0; margin-top: 2px;
+    background: var(--white);
+  }
+  .check-text { font-size: 13.5px; color: var(--navy); line-height: 1.6; }
+  .check-text .sub { font-size: 12px; color: var(--slate); display: block; margin-top: 2px; }
+
+  /* ── JURISDICTION SPLIT ── */
+  .juris-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 22px 0;
+  }
+  .juris-card {
+    border-radius: 4px; padding: 20px 22px;
+  }
+  .juris-ca { background: rgba(47,155,155,0.08); border: 1px solid rgba(47,155,155,0.25); }
+  .juris-us { background: rgba(44,74,94,0.08); border: 1px solid rgba(44,74,94,0.25); }
+  .juris-badge {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; padding: 3px 10px; border-radius: 2px;
+    display: inline-block; margin-bottom: 12px;
+  }
+  .juris-ca .juris-badge { background: var(--teal); color: white; }
+  .juris-us .juris-badge { background: var(--slate); color: white; }
+  .juris-list { list-style: none; padding: 0; }
+  .juris-list li {
+    font-size: 12.5px; color: var(--navy); line-height: 1.65;
+    padding: 5px 0 5px 14px; position: relative;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  .juris-list li:last-child { border-bottom: none; }
+  .juris-list li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); font-size: 10px; top: 7px; }
+
+  /* ── PHASE TIMELINE ── */
+  .phase-timeline {
+    display: flex; gap: 0; margin: 26px 0;
+    border: 1px solid var(--cream-deep); border-radius: 4px; overflow: hidden;
+  }
+  .phase-block { flex: 1; padding: 16px 14px; border-right: 1px solid var(--cream-deep); }
+  .phase-block:last-child { border-right: none; }
+  .phase-block-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px; color: var(--gold); font-weight: 700;
+    letter-spacing: 0.1em; margin-bottom: 4px;
+  }
+  .phase-block-title { font-size: 12px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+  .phase-block-text { font-size: 11.5px; color: var(--slate); line-height: 1.6; }
+
+  /* ── QUICK REF ── */
+  .quick-ref { background: var(--navy); border-radius: 6px; padding: 26px 30px; margin: 26px 0; }
+  .quick-ref-title { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+  .quick-ref-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .quick-ref-item { background: rgba(255,255,255,0.05); border-radius: 4px; padding: 14px 16px; border-top: 2px solid var(--gold); }
+  .quick-ref-item-title { font-size: 11px; font-weight: 600; color: var(--gold); margin-bottom: 6px; }
+  .quick-ref-item-text { font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+
+  /* ── MISTAKES TABLE ── */
+  .mistakes-grid { margin: 22px 0; }
+  .mistake-row { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--cream-deep); }
+  .mistake-row:first-child { background: var(--navy); border-radius: 4px 4px 0 0; }
+  .mistake-header { padding: 12px 18px; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
+  .mistake-cell { padding: 14px 18px; font-size: 13px; line-height: 1.6; color: var(--navy); }
+  .mistake-cell.problem { background: #FDF2F0; border-right: 1px solid var(--cream-deep); }
+  .mistake-cell.fix { background: var(--white); }
+  .mistake-num { font-weight: 700; color: #C0392B; margin-right: 5px; }
+
+  /* ── BADGE ── */
+  .badge {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 2px;
+  }
+  .badge-ca { background: var(--teal); color: white; }
+  .badge-us { background: var(--slate); color: white; }
+  .badge-both { background: var(--gold); color: var(--navy-dark); }
+  .jurisdiction-badges { display: flex; gap: 8px; margin-bottom: 20px; }
+
+  /* ── TOC ── */
+  .toc-page { max-width: 860px; margin: 0 auto; padding: 56px 70px; }
+  .toc-title { font-family: 'Playfair Display', serif; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-burnt); margin-bottom: 30px; }
+  .toc-row { display: flex; align-items: baseline; gap: 12px; padding: 12px 0; border-bottom: 1px dotted var(--cream-deep); }
+  .toc-num { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold-pale); font-weight: 700; flex-shrink: 0; width: 28px; }
+  .toc-item-title { font-size: 15px; font-weight: 500; color: var(--navy); flex: 1; }
+  .toc-item-sub { font-size: 12px; color: var(--slate); opacity: 0.7; }
+
+  /* ── FOOTER ── */
+  .guide-footer { background: var(--navy-dark); padding: 50px 70px; color: var(--white); }
+  .footer-inner { max-width: 860px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+  .footer-cta-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .footer-cta-title { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--white); margin-bottom: 12px; line-height: 1.3; }
+  .footer-cta-text { font-size: 13px; color: rgba(255,255,255,0.52); line-height: 1.7; max-width: 420px; }
+  .footer-btn { background: var(--gold); color: var(--navy-dark); font-family: 'Source Sans 3', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 14px 28px; border-radius: 3px; text-decoration: none; white-space: nowrap; display: inline-block; }
+  .footer-bottom { max-width: 860px; margin: 28px auto 0; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; }
+  .footer-brand-name { font-family: 'Playfair Display', serif; font-size: 15px; color: var(--gold); font-weight: 700; }
+  .footer-tagline-small { font-size: 10px; color: rgba(255,255,255,0.28); letter-spacing: 0.1em; }
+  .footer-url { font-size: 11px; color: rgba(255,255,255,0.32); }
+
+  strong { font-weight: 600; color: var(--navy); }
+  em { font-style: italic; color: var(--slate); }
+</style>
+</head>
+<body>
+
+<!-- ══ COVER ══ -->
+<div class="cover">
+  <div class="cover-brand">
+    <div class="cover-logo-text">CompAlchemist</div>
+    <div class="cover-tagline">Expert-built. AI-powered. Unmistakably human.</div>
+  </div>
+
+  <svg class="cover-hex" width="280" height="320" viewBox="0 0 280 320" fill="none">
+    <polygon points="140,10 270,80 270,240 140,310 10,240 10,80" stroke="#C6A43F" stroke-width="1.5" fill="none"/>
+    <polygon points="140,40 245,100 245,220 140,280 35,220 35,100" stroke="#C6A43F" stroke-width="0.5" fill="none"/>
+  </svg>
+
+  <div class="cover-center">
+    <div class="cover-label">HR Practitioner Guide</div>
+    <h1 class="cover-title">The HR Guide to<br>Managing <span>Medical Leave</span></h1>
+    <p class="cover-subtitle">From first notification to final follow-up — a full-lifecycle guide for HR professionals who want to run a compliant, compassionate, and operationally sound leave program across Canada and the United States.</p>
+
+    <div class="cover-pillars">
+      <div class="cover-pillar">
+        <div class="cover-pillar-num">6</div>
+        <div class="cover-pillar-label">Lifecycle Phases</div>
+      </div>
+      <div class="cover-pillar">
+        <div class="cover-pillar-num">CA+US</div>
+        <div class="cover-pillar-label">Jurisdictions</div>
+      </div>
+      <div class="cover-pillar">
+        <div class="cover-pillar-num">12+</div>
+        <div class="cover-pillar-label">HR Scripts</div>
+      </div>
+      <div class="cover-pillar">
+        <div class="cover-pillar-num">50+</div>
+        <div class="cover-pillar-label">Action Items</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-footer">
+    <p class="cover-note">This guide is a practical HR resource. It does not constitute legal advice. Leave legislation varies by jurisdiction and employer size. When in doubt, consult legal counsel or your provincial/state employment standards authority.</p>
+    <div class="cover-edition">
+      <div>Canada &amp; United States Edition</div>
+      <div style="margin-top:4px;">© 2025 CompAlchemist</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ LIFECYCLE BANNER ══ -->
+<div class="lifecycle-bar">
+  <div class="lc-step"><div class="lc-dot">1</div><div class="lc-label">Intake &amp;<br>Triage</div></div>
+  <div class="lc-step"><div class="lc-dot">2</div><div class="lc-label">Leave<br>Setup</div></div>
+  <div class="lc-step"><div class="lc-dot">3</div><div class="lc-label">Active<br>Leave</div></div>
+  <div class="lc-step"><div class="lc-dot">4</div><div class="lc-label">Return<br>Planning</div></div>
+  <div class="lc-step"><div class="lc-dot">5</div><div class="lc-label">First Week<br>Back</div></div>
+  <div class="lc-step"><div class="lc-dot">6</div><div class="lc-label">Post-Return<br>Follow-Up</div></div>
+</div>
+
+<!-- ══ TOC ══ -->
+<div class="toc-page">
+  <div class="toc-title">What's Inside</div>
+
+  <div class="toc-row">
+    <div class="toc-num">1</div>
+    <div>
+      <div class="toc-item-title">Intake &amp; Triage — The First 24 Hours</div>
+      <div class="toc-item-sub">What to do when the notification lands, what information you actually need, and how to set the tone</div>
+    </div>
+  </div>
+  <div class="toc-row">
+    <div class="toc-num">2</div>
+    <div>
+      <div class="toc-item-title">Establishing the Leave — Documentation, Leave Type &amp; Jurisdiction</div>
+      <div class="toc-item-sub">Determining the right leave category, paperwork, payroll coordination, and manager briefing</div>
+    </div>
+  </div>
+  <div class="toc-row">
+    <div class="toc-num">3</div>
+    <div>
+      <div class="toc-item-title">Managing the Active Leave — Staying Connected the Right Way</div>
+      <div class="toc-item-sub">Communication cadence, boundaries, file maintenance, and what to do when a leave extends</div>
+    </div>
+  </div>
+  <div class="toc-row">
+    <div class="toc-num">4</div>
+    <div>
+      <div class="toc-item-title">Return-to-Work Planning — Building the Bridge Back</div>
+      <div class="toc-item-sub">Accommodation assessments, graduated return plans, and coordinating with manager and employee</div>
+    </div>
+  </div>
+  <div class="toc-row">
+    <div class="toc-num">5</div>
+    <div>
+      <div class="toc-item-title">The First Week Back — HR's Role in Reintegration</div>
+      <div class="toc-item-sub">Check-ins, accommodation monitoring, and what to watch for early</div>
+    </div>
+  </div>
+  <div class="toc-row" style="border-bottom:none;">
+    <div class="toc-num">6</div>
+    <div>
+      <div class="toc-item-title">Post-Return Follow-Up &amp; File Closure</div>
+      <div class="toc-item-sub">30/60/90-day touchpoints, escalation signals, and closing the loop on documentation</div>
+    </div>
+  </div>
+
+  <div class="callout callout-insight" style="margin-top:34px;">
+    <div class="callout-title">⚑ The HR Philosophy Behind This Guide</div>
+    <p>Process protects people. A well-run leave isn't just a compliance exercise — it's one of the most meaningful things HR does. The manager may be the employee's daily anchor, but HR is the architecture underneath. <strong style="color:var(--gold);">This guide helps you be both structurally sound and genuinely human at every stage.</strong></p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 1 — INTAKE & TRIAGE -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="guide-page">
+  <div class="section-header">
+    <div class="section-number">01</div>
+    <div class="section-title-block">
+      <div class="section-phase">Phase One · Intake &amp; Triage</div>
+      <h2 class="section-title">The First 24 Hours After Notification</h2>
+    </div>
+  </div>
+
+  <div class="jurisdiction-badges">
+    <span class="badge badge-both">Canada &amp; US</span>
+  </div>
+
+  <p class="section-intro">The notification arrives — from a manager, from the employee directly, or sometimes from payroll flagging an unplanned absence. However it lands, your first response sets the entire tone of the leave. This phase is about making contact, gathering only what you need, and ensuring the employee knows they're in capable hands.</p>
+
+  <div class="highlight-band">
+    <div class="highlight-band-icon">🧭</div>
+    <div class="highlight-band-text"><strong>Your job in the first 24 hours is not to solve everything.</strong> It's to make the employee feel safe, confirm HR is their point of contact, gather the minimum necessary information, and begin the formal process. Competence communicated calmly is the most reassuring thing you can offer right now.</div>
+  </div>
+
+  <h3 style="font-size:15px; color:var(--navy); margin:26px 0 14px; font-weight:600;">Intake Checklist — First 24 Hours</h3>
+
+  <div class="checklist">
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Acknowledge receipt of the notification to the manager (or employee, if they contacted HR directly) — same day<span class="sub">A brief, warm reply confirming you've received the information and will be in touch shortly.</span></div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Make direct contact with the employee<span class="sub">A phone call is preferred over email for the first touch. Warmth travels better over voice.</span></div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Gather the minimum necessary information<span class="sub">Anticipated start date, anticipated duration (if known), and whether the employee has a treating healthcare provider. Nothing more.</span></div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Confirm the employee's preferred contact method during leave<span class="sub">Email, phone, or a designated family/support contact for administrative matters only.</span></div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Identify the applicable leave type(s) — provisionally<span class="sub">See Section 2 for full determination. At intake, a preliminary categorization is enough.</span></div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Brief the manager on their role and boundaries<span class="sub">Confirm HR is taking the lead. Share the two-message rule for manager contact during leave.</span></div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Open a leave file or record in your HRIS<span class="sub">Date of notification, employee name, leave type, anticipated duration. This is your audit trail.</span></div></div>
+  </div>
+
+  <h3 style="font-size:15px; color:var(--navy); margin:28px 0 14px; font-weight:600;">Your First Call with the Employee: Scripts</h3>
+
+  <div class="script-card">
+    <div class="script-label">Opening the conversation</div>
+    <div class="script-text">"Hi [Name], this is [Your Name] from HR. I heard from [Manager] that you're going through something difficult right now, and I wanted to reach out personally. You don't need to have everything figured out — that's what I'm here for. Can you tell me a little about where things are at?"</div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-label">When they're unsure how long they'll be off</div>
+    <div class="script-text">"That's completely okay — we don't need an exact date right now. Your focus should be on getting well. We'll plan for what we know and adjust as things become clearer. There's a process for that, and I'll walk you through each step."</div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-label">Closing the intake call</div>
+    <div class="script-text">"Here's what happens next: I'm going to send you a summary email outlining the leave process and any forms you'll need to complete. Your manager knows that I'll be your main point of contact from here. You can reach me at [contact info] anytime. How are you feeling about all of this?"</div>
+  </div>
+
+  <div class="do-dont-grid">
+    <div class="do-box">
+      <div class="do-dont-label"><div class="do-dont-icon">✓</div> HR Best Practice</div>
+      <ul class="do-dont-list">
+        <li>Lead with empathy before process</li>
+        <li>Confirm you — not the manager — are the point of contact</li>
+        <li>Ask only what's needed to start the paperwork</li>
+        <li>Send a follow-up summary email within the same day</li>
+        <li>Document date, time, and summary of the call</li>
+      </ul>
+    </div>
+    <div class="dont-box">
+      <div class="do-dont-label"><div class="do-dont-icon">✗</div> Common Intake Errors</div>
+      <ul class="do-dont-list">
+        <li>Immediately asking for a diagnosis or medical details</li>
+        <li>Sending a form-heavy email before making human contact</li>
+        <li>Letting the manager remain the primary contact by default</li>
+        <li>Failing to document the intake conversation</li>
+        <li>Treating the call as a screening exercise rather than a welcome</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-human">
+    <div class="callout-title">🌿 The Human Note</div>
+    <p>Employees on the verge of a medical leave are often scared — about their health, their job security, their team, their finances. Your first call is not administrative. It is the moment they decide whether this organization is safe to be vulnerable with. <strong>Answer that question well, and everything that follows is easier.</strong></p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 2 — ESTABLISHING THE LEAVE -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="guide-page">
+  <div class="section-header">
+    <div class="section-number">02</div>
+    <div class="section-title-block">
+      <div class="section-phase">Phase Two · Leave Setup</div>
+      <h2 class="section-title">Establishing the Leave: Type, Documentation &amp; Jurisdiction</h2>
+    </div>
+  </div>
+
+  <div class="jurisdiction-badges">
+    <span class="badge badge-ca">Canada</span>
+    <span class="badge badge-us">United States</span>
+  </div>
+
+  <p class="section-intro">Once intake is complete, your next task is to determine the correct leave framework, collect documentation within legal limits, coordinate with payroll and benefits, and formalize the leave in writing. This is where process does the heavy lifting — and where precision prevents problems later.</p>
+
+  <h3 style="font-size:15px; color:var(--navy); margin:0 0 16px; font-weight:600;">Step 1: Determine Leave Type</h3>
+
+  <div class="juris-grid">
+    <div class="juris-card juris-ca">
+      <div class="juris-badge">Canada</div>
+      <ul class="juris-list">
+        <li><strong>Personal Emergency / Medical Leave</strong> — provincial ESA entitlements (unpaid, job-protected; varies by province)</li>
+        <li><strong>Short-Term Disability (STD)</strong> — employer-provided or insured plan; typically weeks 1–17</li>
+        <li><strong>Long-Term Disability (LTD)</strong> — insurer-managed; typically after 17 weeks STD</li>
+        <li><strong>EI Sickness Benefits</strong> — federal; up to 26 weeks; employee-applied</li>
+        <li><strong>Human Rights Accommodation Leave</strong> — duty to accommodate to undue hardship</li>
+        <li><strong>Federal Canada Labour Code</strong> — applies to federally regulated workplaces only</li>
+      </ul>
+    </div>
+    <div class="juris-card juris-us">
+      <div class="juris-badge">United States</div>
+      <ul class="juris-list">
+        <li><strong>FMLA</strong> — up to 12 weeks unpaid, job-protected; 50+ employee threshold</li>
+        <li><strong>ADA Leave</strong> — reasonable accommodation; may extend beyond FMLA</li>
+        <li><strong>STD / LTD</strong> — employer or insurer plan; runs concurrently with FMLA where applicable</li>
+        <li><strong>State Leave Laws</strong> — CFRA (CA), NY PFL, WA PFML and others may exceed FMLA</li>
+        <li><strong>Workers' Compensation</strong> — for work-related illness/injury; separate process</li>
+        <li><strong>Company Policy Leave</strong> — discretionary extensions beyond statutory minimums</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-warning">
+    <div class="callout-title">⚠️ Stacking Rules</div>
+    <p>Multiple leave types can apply simultaneously. In Canada, STD and provincial job-protection leave typically run concurrently. In the US, FMLA and ADA leave can overlap — but FMLA exhaustion does not end the ADA accommodation obligation. Always assess all applicable frameworks before closing a leave file. When in doubt, consult legal counsel or your insurer's case manager.</p>
+  </div>
+
+  <h3 style="font-size:15px; color:var(--navy); margin:28px 0 14px; font-weight:600;">Step 2: Documentation — What You Can and Cannot Request</h3>
+
+  <div class="two-col">
+    <div class="info-card">
+      <div class="info-card-title">✅ You May Request</div>
+      <ul class="info-list">
+        <li>Confirmation that a medical condition exists</li>
+        <li>The anticipated start and expected duration of leave</li>
+        <li>Functional limitations or restrictions (for accommodation planning)</li>
+        <li>Healthcare provider's name and specialty (for STD/LTD insurer)</li>
+        <li>Completed insurer or company leave forms (signed by treating provider)</li>
+        <li>Fitness-for-return confirmation before the employee resumes duties</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title">🚫 You May Not Request</div>
+      <ul class="info-list">
+        <li>The specific diagnosis or medical condition</li>
+        <li>Details about treatment, medications, or therapy</li>
+        <li>Prognosis or long-term health outlook (beyond functional capacity)</li>
+        <li>Access to medical records directly from the treating provider</li>
+        <li>Second opinions without clear business justification and legal footing</li>
+        <li>Any information that would reveal a protected characteristic</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="font-size:15px; color:var(--navy); margin:28px 0 14px; font-weight:600;">Step 3: Payroll, Benefits &amp; Administration Checklist</h3>
+
+  <div class="checklist">
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Notify payroll of the leave start date and pay continuation rules<span class="sub">Confirm whether STD/LTD offsets apply to base salary, and when payroll transitions from regular to leave pay.</span></div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Confirm benefit continuation during leave<span class="sub">In Canada, group benefits typically continue during job-protected leaves if premiums are maintained. Confirm with your plan administrator. In the US, confirm COBRA eligibility/timing during FMLA/non-FMLA periods.</span></div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Initiate STD/LTD claim with insurer (if applicable)<span class="sub">Provide the employee with insurer contact info and claim forms. Note: the insurer manages the claim; HR manages the employment relationship.</span></div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Issue a formal leave confirmation letter to the employee<span class="sub">Confirming: leave type, start date, anticipated end date (if known), benefit continuation status, and return-to-work process.</span></div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Update HRIS with leave status, type, and key dates<span class="sub">This is your compliance audit trail. Gaps in leave records create liability.</span></div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Brief the manager — in writing — on their role<span class="sub">Confirm HR leads all formal communication. Provide the two-message guideline for personal contact during leave.</span></div></div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-label">Leave confirmation letter opening paragraph</div>
+    <div class="script-text">"This letter confirms your approved medical leave of absence, effective [date]. We want to ensure this period is as straightforward as possible for you. Below you'll find the details of your leave, including benefit continuation and what to expect as your return date approaches. Please don't hesitate to reach out — I'm your primary contact throughout."</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 3 — ACTIVE LEAVE -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="guide-page">
+  <div class="section-header">
+    <div class="section-number">03</div>
+    <div class="section-title-block">
+      <div class="section-phase">Phase Three · Active Leave</div>
+      <h2 class="section-title">Managing the Active Leave — Communication, File &amp; Extensions</h2>
+    </div>
+  </div>
+
+  <div class="jurisdiction-badges">
+    <span class="badge badge-both">Canada &amp; US</span>
+  </div>
+
+  <p class="section-intro">Once the leave is formally established, HR's role shifts from setup to stewardship. This phase is less visible but equally important. A well-managed active leave means fewer complications at return, better compliance documentation, and an employee who feels held — not forgotten — by their organization.</p>
+
+  <div class="quick-ref">
+    <div class="quick-ref-title">📋 HR Communication Model During Active Leave</div>
+    <div class="quick-ref-grid">
+      <div class="quick-ref-item">
+        <div class="quick-ref-item-title">HR-Initiated Contact</div>
+        <div class="quick-ref-item-text">Administrative only: documentation reminders, benefit updates, leave extensions, return date planning. Never clinical or casual.</div>
+      </div>
+      <div class="quick-ref-item">
+        <div class="quick-ref-item-title">Cadence</div>
+        <div class="quick-ref-item-text">Short leaves (&lt;4 weeks): one mid-leave check-in. Longer leaves: monthly administrative touchpoint. Always by the employee's preferred method.</div>
+      </div>
+      <div class="quick-ref-item">
+        <div class="quick-ref-item-title">What HR Never Asks</div>
+        <div class="quick-ref-item-text">How treatment is going, whether they feel better, or when they think they'll be ready to return — unless they raise it first.</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size:15px; color:var(--navy); margin:26px 0 14px; font-weight:600;">Mid-Leave Administrative Check-In</h3>
+
+  <div class="script-card">
+    <div class="script-label">Mid-leave HR check-in (email or call)</div>
+    <div class="script-text">"Hi [Name], I wanted to touch base to confirm that everything is in order on our end — your benefits are active and your leave is properly recorded. I also want to make sure you have everything you need from us. Your anticipated return date is [date]. As that approaches, I'll be in touch to start the return-planning conversation. Please reach out at any time if anything changes or if you need support navigating anything."</div>
+  </div>
+
+  <h3 style="font-size:15px; color:var(--navy); margin:28px 0 14px; font-weight:600;">File Maintenance During Active Leave</h3>
+
+  <div class="checklist">
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Update HRIS if leave is extended beyond the original anticipated end date<span class="sub">Document the new anticipated return date and the reason for extension (e.g., medical certification of continued disability).</span></div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Track leave duration against applicable statutory entitlements<span class="sub">Flag when an employee is approaching the end of job-protected leave. This requires advance planning, not a last-minute call.</span></div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Maintain insurer / STD-LTD communication records<span class="sub">Keep copies of all insurer correspondence in the leave file. The insurer manages the claim; HR manages the employment record.</span></div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Flag any performance management processes that were underway before the leave<span class="sub">These must be paused. Continuing a PIP or disciplinary process during a medical leave creates significant legal exposure.</span></div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Ensure interim coverage decisions are documented and not permanent<span class="sub">Role backfill is operational, not a restructure. The position must be held for the employee's return unless a formal consultation/restructuring process is conducted.</span></div></div>
+  </div>
+
+  <h3 style="font-size:15px; color:var(--navy); margin:28px 0 14px; font-weight:600;">When a Leave Extends Beyond the Expected Date</h3>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-title">Request updated medical certification</div>
+        <div class="step-body">Send a formal, brief request to the employee asking for updated documentation confirming continued disability and a revised anticipated return date. Give a reasonable deadline — typically 5–7 business days.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-title">Assess remaining statutory entitlements</div>
+        <div class="step-body">Determine how much job-protected leave remains. If the employee is approaching the end of statutory entitlement, initiate a legal review before making any employment decisions. This is not a unilateral HR call.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-title">Issue a written leave extension confirmation</div>
+        <div class="step-body">Even if no decision is required, document the extension in writing to the employee — confirming the new anticipated return date, benefit status, and that HR remains their point of contact.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-title">Brief the manager on operational implications</div>
+        <div class="step-body">Not the medical facts — the timeline. A manager who doesn't know a leave has extended will fill the gap with assumptions. A brief, factual update prevents that.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-human">
+    <div class="callout-title">🌿 The Human Note</div>
+    <p>Extended leaves are often accompanied by guilt. Employees worry they're letting the team down, that their job isn't safe, or that they've become a burden. A single sentence at the end of an administrative check-in — <em>"Your job is here. Focus on what matters right now."</em> — costs nothing and means everything.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 4 — RETURN-TO-WORK PLANNING -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="guide-page">
+  <div class="section-header">
+    <div class="section-number">04</div>
+    <div class="section-title-block">
+      <div class="section-phase">Phase Four · Return Planning</div>
+      <h2 class="section-title">Building the Bridge Back — Return-to-Work Planning</h2>
+    </div>
+  </div>
+
+  <div class="jurisdiction-badges">
+    <span class="badge badge-both">Canada &amp; US</span>
+  </div>
+
+  <p class="section-intro">Return-to-work planning should begin <em>at least two to four weeks before the anticipated return date</em> — not the day before. This is one of the most operationally complex phases of the leave lifecycle, and the one most likely to go wrong when left to the last minute. HR owns this phase entirely.</p>
+
+  <div class="highlight-band">
+    <div class="highlight-band-icon">📐</div>
+    <div class="highlight-band-text"><strong>A return-to-work plan is not a formality.</strong> It is the document that determines whether the employee's return is sustainable. In both Canada and the US, HR has a legal obligation to assess accommodation needs before a return. Getting this right protects the employee, the manager, and the organization.</div>
+  </div>
+
+  <h3 style="font-size:15px; color:var(--navy); margin:26px 0 14px; font-weight:600;">Return-to-Work Planning Timeline</h3>
+
+  <div class="phase-timeline">
+    <div class="phase-block">
+      <div class="phase-block-num">4 WEEKS OUT</div>
+      <div class="phase-block-title">Initiate Contact</div>
+      <div class="phase-block-text">Reach out to the employee to confirm anticipated return date and begin the conversation about what they'll need.</div>
+    </div>
+    <div class="phase-block">
+      <div class="phase-block-num">3 WEEKS OUT</div>
+      <div class="phase-block-title">Request RTW Cert.</div>
+      <div class="phase-block-text">Request a fitness-for-return form from the treating provider outlining any functional limitations or restrictions.</div>
+    </div>
+    <div class="phase-block">
+      <div class="phase-block-num">2 WEEKS OUT</div>
+      <div class="phase-block-title">Draft RTW Plan</div>
+      <div class="phase-block-text">Review medical documentation. Draft accommodation or graduated return plan. Loop in the manager for operational input.</div>
+    </div>
+    <div class="phase-block">
+      <div class="phase-block-num">1 WEEK OUT</div>
+      <div class="phase-block-title">Confirm &amp; Finalize</div>
+      <div class="phase-block-text">Share the finalized plan with the employee. Confirm they agree. Brief manager. Confirm any physical or system changes needed.</div>
+    </div>
+    <div class="phase-block">
+      <div class="phase-block-num">DAY BEFORE</div>
+      <div class="phase-block-title">Final Check-In</div>
+      <div class="phase-block-text">A brief, warm message: "Everything is set. We're looking forward to seeing you tomorrow. I'll check in with you on Day 1."</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:15px; color:var(--navy); margin:28px 0 14px; font-weight:600;">Accommodation Assessment: What HR Needs to Evaluate</h3>
+
+  <div class="three-col">
+    <div class="info-card">
+      <div class="info-card-title">Physical / Ergonomic</div>
+      <ul class="info-list">
+        <li>Workstation modifications</li>
+        <li>Reduced physical demands</li>
+        <li>Parking or mobility access</li>
+        <li>Rest periods or sit/stand options</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title">Scheduling / Hours</div>
+      <ul class="info-list">
+        <li>Graduated return (e.g., 50% → 75% → 100%)</li>
+        <li>Modified start/end times</li>
+        <li>Reduced hours (temporary)</li>
+        <li>Remote work flexibility</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title">Duties / Role</div>
+      <ul class="info-list">
+        <li>Temporary modification of specific tasks</li>
+        <li>Reduced complexity in first weeks</li>
+        <li>Avoidance of specific stressors</li>
+        <li>Alternate role (if permanent restrictions require)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-label">Opening the RTW conversation with the employee</div>
+    <div class="script-text">"We're really glad your return is coming up. Before we finalize everything, I want to make sure we get the plan right for you. Can you tell me how you're feeling about coming back, and whether there's anything about the role or environment that you're thinking about?"</div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-label">Briefing the manager on the accommodation plan</div>
+    <div class="script-text">"[Employee] is returning on [date] with a few temporary adjustments to support their transition. I'll send you a summary in writing. The most important thing right now is to honour the plan exactly as written — not to be hard on yourself about adjusting, just to follow it. I'll check in with both of you after week one."</div>
+  </div>
+
+  <div class="callout callout-warning">
+    <div class="callout-title">⚠️ The Duty to Accommodate (Canada) / Reasonable Accommodation (US)</div>
+    <p>In Canada, the duty to accommodate extends to the point of <strong>undue hardship</strong> — a high threshold that considers financial cost, health and safety impact, and organizational disruption. In the US, the ADA requires <strong>reasonable accommodation</strong> absent undue hardship. Neither is a "we tried" standard. Both require a genuine, documented, individualized assessment process. If you're uncertain, get legal advice before declining an accommodation request.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 5 — FIRST WEEK BACK -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="guide-page">
+  <div class="section-header">
+    <div class="section-number">05</div>
+    <div class="section-title-block">
+      <div class="section-phase">Phase Five · Reintegration</div>
+      <h2 class="section-title">The First Week Back — HR's Role in Reintegration</h2>
+    </div>
+  </div>
+
+  <div class="jurisdiction-badges">
+    <span class="badge badge-both">Canada &amp; US</span>
+  </div>
+
+  <p class="section-intro">The return-to-work plan was the architecture. The first week is the lived experience. HR's role shifts from planner to monitor — ensuring the accommodation plan is being followed, the employee feels supported, and any early warning signs are caught before they become a second leave.</p>
+
+  <h3 style="font-size:15px; color:var(--navy); margin:0 0 14px; font-weight:600;">HR's Week-One Checklist</h3>
+
+  <div class="checklist">
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Day 1: Brief check-in with the employee<span class="sub">By phone or in person. Warm and brief — "How did today feel? Anything we need to adjust?" This is a temperature check, not a debrief.</span></div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Day 1: Confirm with the manager that the accommodation plan is in place<span class="sub">A quick message: "How did today go? Anything to flag?" Managers sometimes default to old routines — this check-in catches that early.</span></div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Day 3: Second brief check-in with the employee<span class="sub">Mid-week is when the fatigue of re-entry often sets in. Catching it here allows for adjustment before it escalates.</span></div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">End of Week 1: Formal check-in with both the employee and manager separately<span class="sub">Assess: Is the plan working? Does anything need adjustment? Are there any interpersonal dynamics to address? Document your notes.</span></div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Update HRIS to reflect return to active status<span class="sub">Close the leave record, confirm accommodation plan start date, and note the end date of any graduated return schedule.</span></div></div>
+  </div>
+
+  <h3 style="font-size:15px; color:var(--navy); margin:28px 0 14px; font-weight:600;">Early Warning Signs to Watch For</h3>
+
+  <div class="do-dont-grid">
+    <div class="do-box">
+      <div class="do-dont-label"><div class="do-dont-icon">✓</div> Healthy Reintegration Signs</div>
+      <ul class="do-dont-list">
+        <li>Employee appears engaged and present</li>
+        <li>Accommodation plan is being followed by the team</li>
+        <li>Manager reports positive interactions</li>
+        <li>Employee raises minor adjustments proactively</li>
+        <li>Attendance is consistent with the return plan</li>
+      </ul>
+    </div>
+    <div class="dont-box">
+      <div class="do-dont-label"><div class="do-dont-icon">✗</div> Flags That Need HR Action</div>
+      <ul class="do-dont-list">
+        <li>Employee seems overwhelmed, tearful, or withdrawn</li>
+        <li>Manager is bypassing or minimizing accommodations</li>
+        <li>Absenteeism patterns emerging in Week 1 or 2</li>
+        <li>Employee reports feeling pressured to perform at full capacity</li>
+        <li>Team dynamics are tense around the return</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-label">End-of-week-one check-in with employee</div>
+    <div class="script-text">"I just wanted to check in now that you've got your first week behind you. I know re-entry can be a lot, even when things go well. How are you feeling about how the week went? Is there anything about the plan that needs to be adjusted, or anything you want me to be aware of going into next week?"</div>
+  </div>
+
+  <div class="callout callout-human">
+    <div class="callout-title">🌿 The Human Note</div>
+    <p>The first week back is often the most disorienting of the entire leave experience — not because people aren't ready, but because re-entry requires adjusting to a rhythm they've been away from. <strong>Your check-ins this week are not administrative.</strong> They're the signal that the organization meant what it said during leave: we've got you.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 6 — POST-RETURN FOLLOW-UP -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="guide-page">
+  <div class="section-header">
+    <div class="section-number">06</div>
+    <div class="section-title-block">
+      <div class="section-phase">Phase Six · Follow-Up &amp; Closure</div>
+      <h2 class="section-title">Post-Return Follow-Up &amp; File Closure</h2>
+    </div>
+  </div>
+
+  <div class="jurisdiction-badges">
+    <span class="badge badge-both">Canada &amp; US</span>
+  </div>
+
+  <p class="section-intro">The leave doesn't end when the employee returns. In the 30–90 days that follow, HR plays a quiet but critical role: monitoring the reintegration, escalating when needed, transitioning the employee back to normal performance management frameworks, and closing the file with proper documentation.</p>
+
+  <h3 style="font-size:15px; color:var(--navy); margin:0 0 14px; font-weight:600;">30 / 60 / 90-Day Follow-Up Framework</h3>
+
+  <div class="phase-timeline">
+    <div class="phase-block">
+      <div class="phase-block-num">30 DAYS</div>
+      <div class="phase-block-title">Accommodation Review</div>
+      <div class="phase-block-text">Is the plan still appropriate? Check in with both employee and manager. Adjust if needed. Document any changes.</div>
+    </div>
+    <div class="phase-block">
+      <div class="phase-block-num">60 DAYS</div>
+      <div class="phase-block-title">Graduated Ramp-Up</div>
+      <div class="phase-block-text">If on a phased return, confirm progress toward full duties. Any concerns get addressed now — not at 90 days.</div>
+    </div>
+    <div class="phase-block">
+      <div class="phase-block-num">90 DAYS</div>
+      <div class="phase-block-title">Full Integration Review</div>
+      <div class="phase-block-text">Is the employee fully reintegrated? Are accommodations still needed or can they be formally closed? Document the outcome.</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:15px; color:var(--navy); margin:28px 0 14px; font-weight:600;">Escalation Triggers: When HR Must Act</h3>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">!</div>
+      <div class="step-content">
+        <div class="step-title">Attendance deterioration post-return</div>
+        <div class="step-body">Frequent absences within the first 90 days of return may signal that the accommodation plan is insufficient, that the workplace environment is not supportive, or that the employee is not yet medically ready. Address this with the employee directly before involving the manager.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">!</div>
+      <div class="step-content">
+        <div class="step-title">Manager non-compliance with the accommodation plan</div>
+        <div class="step-body">This is a serious issue. Non-compliance exposes the organization to human rights liability in both Canada and the US. Address it directly with the manager and their leader. Document your intervention.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">!</div>
+      <div class="step-content">
+        <div class="step-title">Employee raises concerns about retaliation or adverse treatment</div>
+        <div class="step-body">Any indication that an employee is being penalized — formally or informally — for having taken a medical leave requires immediate HR investigation. This is not a "monitor and see" situation.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">!</div>
+      <div class="step-content">
+        <div class="step-title">Second leave within 6 months of return</div>
+        <div class="step-body">Treat a second leave as a signal that either the original accommodation was insufficient or that there's an underlying workplace factor contributing to the employee's health challenges. Begin a structured accommodation review rather than simply processing the leave again.</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size:15px; color:var(--navy); margin:28px 0 14px; font-weight:600;">Closing the Leave File — Documentation Checklist</h3>
+
+  <div class="checklist">
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Confirmed return-to-work date recorded in HRIS</div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Fitness-for-return medical certification on file</div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Accommodation plan (if applicable) — signed by employee, manager, and HR</div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">All leave correspondence (letters, emails, forms) filed in the leave record</div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Insurer or STD/LTD file closed or transitioned as applicable</div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Performance management process (if previously paused) formally re-initiated with HR guidance</div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">30/60/90-day follow-up outcomes documented</div></div>
+    <div class="check-item"><div class="check-box"></div><div class="check-text">Leave file retained per applicable records retention requirements<span class="sub">Canada: varies by province, generally 3–7 years. US: FMLA records must be retained for 3 years minimum.</span></div></div>
+  </div>
+
+  <div class="callout callout-insight">
+    <div class="callout-title">✦ The Closing Thought</div>
+    <p>A medical leave handled well is one of the most powerful retention tools an organization has. The employee who returns to a job that was held for them, supported during their absence, and thoughtfully re-integrated is far more likely to remain — and to speak well of the organization. <strong style="color:var(--gold);">HR doesn't just manage the process. HR shapes the experience. Make it one worth remembering.</strong></p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- QUICK REFERENCE CHEAT SHEET -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="guide-page" style="padding-bottom:20px;">
+  <div class="section-header">
+    <div class="section-number"></div>
+    <div class="section-title-block">
+      <div class="section-phase">Quick Reference</div>
+      <h2 class="section-title">HR's One-Page Leave Lifecycle Cheat Sheet</h2>
+    </div>
+  </div>
+
+  <div class="quick-ref">
+    <div class="quick-ref-title">📌 What HR Does at Each Phase</div>
+    <div class="quick-ref-grid">
+      <div class="quick-ref-item">
+        <div class="quick-ref-item-title">Intake (24 hrs)</div>
+        <div class="quick-ref-item-text">Call the employee. Gather minimum info. Open the file. Brief the manager. Send a follow-up email.</div>
+      </div>
+      <div class="quick-ref-item">
+        <div class="quick-ref-item-title">Leave Setup</div>
+        <div class="quick-ref-item-text">Determine leave type. Collect documentation within legal limits. Coordinate payroll &amp; benefits. Issue confirmation letter.</div>
+      </div>
+      <div class="quick-ref-item">
+        <div class="quick-ref-item-title">Active Leave</div>
+        <div class="quick-ref-item-text">Administrative check-ins only. Maintain the file. Track entitlements. Manage extensions in writing. Protect the position.</div>
+      </div>
+      <div class="quick-ref-item">
+        <div class="quick-ref-item-title">RTW Planning</div>
+        <div class="quick-ref-item-text">Start 4 weeks out. Request fitness cert. Draft accommodation plan. Brief manager. Confirm with employee. Finalize in writing.</div>
+      </div>
+      <div class="quick-ref-item">
+        <div class="quick-ref-item-title">First Week Back</div>
+        <div class="quick-ref-item-text">Day 1, Day 3, and end-of-week check-ins. Monitor accommodation compliance. Watch for early warning signs. Document everything.</div>
+      </div>
+      <div class="quick-ref-item">
+        <div class="quick-ref-item-title">30/60/90 Days</div>
+        <div class="quick-ref-item-text">Review accommodation plan. Escalate if needed. Close the file at 90 days with full documentation. Retain per records rules.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-warning" style="margin-top:26px;">
+    <div class="callout-title">⚠️ Always Seek Legal Advice When</div>
+    <p>You are considering denying or ending a leave. An employee requests an accommodation you believe is unreasonable. You need to fill the role permanently during a protected leave. A performance or discipline process intersects with a medical leave. An employee alleges retaliation. <strong>HR expertise and legal expertise are not the same thing.</strong> Know when you need both.</p>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<div class="guide-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-cta-label">Want More Tools Like This?</div>
+      <div class="footer-cta-title">Navigator Tools Built for HR &amp; People Professionals</div>
+      <p class="footer-cta-text">CompAlchemist builds browser-based HR tools designed to give you expert guidance on leave, pay equity, job levelling, and more — without the consulting fees. Built by an HR practitioner, for HR practitioners.</p>
+    </div>
+    <a class="footer-btn" href="https://www.compalchemist.com" target="_blank">Explore the Tools →</a>
+  </div>
+  <div class="footer-bottom">
+    <div>
+      <div class="footer-brand-name">CompAlchemist</div>
+      <div class="footer-tagline-small">Expert-built. AI-powered. Unmistakably human.</div>
+    </div>
+    <div class="footer-url">compalchemist.com · hello@compalchemist.com</div>
+  </div>
+</div>
+
+</body>
+</html>

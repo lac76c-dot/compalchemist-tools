@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manager's Guide to Medical Leave | CompAlchemist</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1A2C3E;
+    --navy-dark: #0F1E2A;
+    --slate: #2C4A5E;
+    --gold: #C6A43F;
+    --gold-burnt: #B58B2F;
+    --gold-pale: #E6D5B8;
+    --cream: #F5F0E1;
+    --cream-deep: #E8DFCF;
+    --mist: #E8F0F5;
+    --burgundy: #8B4C39;
+    --teal: #2F9B9B;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── PRINT / PDF ── */
+  @media print {
+    .page { page-break-after: always; }
+    body { background: white; }
+  }
+
+  /* ── COVER PAGE ── */
+  .cover {
+    background: var(--navy-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px 70px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(198,164,63,0.12) 0%, transparent 70%);
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 350px; height: 350px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(47,155,155,0.10) 0%, transparent 70%);
+  }
+
+  .cover-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .cover-logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  .cover-tagline {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .cover-hex {
+    position: absolute;
+    top: 50px; right: 70px;
+    opacity: 0.06;
+  }
+
+  .cover-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 0 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .cover-label::before {
+    content: '';
+    display: block;
+    width: 32px; height: 1px;
+    background: var(--gold);
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 16px;
+    max-width: 580px;
+  }
+
+  .cover-title span { color: var(--gold); }
+
+  .cover-subtitle {
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+
+  .cover-pillars {
+    display: flex;
+    gap: 0;
+    max-width: 560px;
+  }
+
+  .cover-pillar {
+    flex: 1;
+    border-top: 2px solid var(--gold);
+    padding-top: 14px;
+  }
+
+  .cover-pillar:not(:last-child) {
+    padding-right: 20px;
+    margin-right: 20px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .cover-pillar-num {
+    font-size: 28px;
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .cover-pillar-label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .cover-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative; z-index: 1;
+  }
+
+  .cover-note {
+    font-size: 10px;
+    color: rgba(255,255,255,0.3);
+    max-width: 380px;
+    line-height: 1.6;
+  }
+
+  .cover-edition {
+    font-size: 10px;
+    color: rgba(255,255,255,0.25);
+    text-align: right;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── CONTENT PAGES ── */
+  .guide-page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 60px 70px;
+  }
+
+  /* Section headers */
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .section-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--gold-pale);
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: -6px;
+  }
+
+  .section-title-block {}
+
+  .section-phase {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-burnt);
+    margin-bottom: 4px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+
+  .section-intro {
+    font-size: 14.5px;
+    color: var(--slate);
+    line-height: 1.75;
+    margin-bottom: 28px;
+  }
+
+  /* Divider */
+  .page-divider {
+    margin: 50px 0;
+    border: none;
+    border-top: 1px solid var(--cream-deep);
+  }
+
+  /* ── CALLOUT BOXES ── */
+  .callout {
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin: 24px 0;
+    position: relative;
+  }
+
+  .callout-title {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .callout p {
+    font-size: 13.5px;
+    line-height: 1.7;
+  }
+
+  .callout-insight {
+    background: var(--navy);
+    color: var(--white);
+    border-left: 4px solid var(--gold);
+  }
+  .callout-insight .callout-title { color: var(--gold); }
+  .callout-insight p { color: rgba(255,255,255,0.82); }
+
+  .callout-remember {
+    background: var(--mist);
+    border-left: 4px solid var(--teal);
+  }
+  .callout-remember .callout-title { color: var(--teal); }
+  .callout-remember p { color: var(--slate); }
+
+  .callout-warning {
+    background: #FDF6EC;
+    border-left: 4px solid var(--gold-burnt);
+  }
+  .callout-warning .callout-title { color: var(--gold-burnt); }
+  .callout-warning p { color: var(--navy); }
+
+  /* ── DO / DON'T BOXES ── */
+  .do-dont-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .do-box, .dont-box {
+    border-radius: 4px;
+    padding: 20px 22px;
+  }
+
+  .do-box {
+    background: #F0F8F4;
+    border: 1px solid #A8D5B8;
+  }
+
+  .dont-box {
+    background: #FDF2F0;
+    border: 1px solid #E8B4A8;
+  }
+
+  .do-dont-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .do-box .do-dont-label { color: #2A7A4B; }
+  .dont-box .do-dont-label { color: #C0392B; }
+
+  .do-dont-icon {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .do-box .do-dont-icon { background: #2A7A4B; color: white; }
+  .dont-box .do-dont-icon { background: #C0392B; color: white; }
+
+  .do-dont-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .do-dont-list li {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--navy);
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .do-dont-list li:last-child { border-bottom: none; }
+
+  .do-box .do-dont-list li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: #2A7A4B;
+    font-size: 12px;
+  }
+
+  .dont-box .do-dont-list li::before {
+    content: '×';
+    position: absolute; left: 0;
+    color: #C0392B;
+    font-size: 14px;
+    top: 4px;
+  }
+
+  /* ── SCRIPT CARDS ── */
+  .script-card {
+    background: var(--white);
+    border: 1px solid var(--cream-deep);
+    border-radius: 6px;
+    padding: 22px 26px;
+    margin: 16px 0;
+    position: relative;
+  }
+
+  .script-card::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    color: var(--gold-pale);
+    position: absolute;
+    top: -8px; left: 16px;
+    line-height: 1;
+  }
+
+  .script-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-burnt);
+    margin-bottom: 10px;
+    padding-left: 24px;
+  }
+
+  .script-text {
+    font-size: 14px;
+    color: var(--navy);
+    line-height: 1.75;
+    font-style: italic;
+    padding-left: 24px;
+  }
+
+  /* ── STEP TIMELINE ── */
+  .steps {
+    margin: 24px 0;
+  }
+
+  .step {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 18px; top: 40px;
+    width: 2px;
+    height: calc(100% - 10px);
+    background: var(--gold-pale);
+  }
+
+  .step-num {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    position: relative; z-index: 1;
+  }
+
+  .step-content {
+    padding-top: 6px;
+    flex: 1;
+  }
+
+  .step-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .step-body {
+    font-size: 13.5px;
+    color: var(--slate);
+    line-height: 1.65;
+  }
+
+  /* ── MISTAKES TABLE ── */
+  .mistakes-grid {
+    margin: 24px 0;
+  }
+
+  .mistake-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--cream-deep);
+  }
+
+  .mistake-row:first-child {
+    background: var(--navy);
+    border-radius: 4px 4px 0 0;
+  }
+
+  .mistake-header {
+    padding: 12px 18px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .mistake-cell {
+    padding: 14px 18px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--navy);
+    vertical-align: top;
+  }
+
+  .mistake-cell.problem {
+    background: #FDF2F0;
+    border-right: 1px solid var(--cream-deep);
+  }
+
+  .mistake-cell.fix {
+    background: var(--white);
+  }
+
+  .mistake-row:last-child .mistake-cell {
+    border-radius: 0 0 4px 4px;
+  }
+
+  .mistake-num {
+    font-weight: 700;
+    color: #C0392B;
+    margin-right: 6px;
+  }
+
+  /* ── INFO COLUMNS ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+  }
+
+  .info-card {
+    background: var(--white);
+    border: 1px solid var(--cream-deep);
+    border-radius: 4px;
+    padding: 20px;
+  }
+
+  .info-card-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-burnt);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--gold-pale);
+  }
+
+  .info-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .info-list li {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--slate);
+    padding: 5px 0;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .info-list li::before {
+    content: '▸';
+    position: absolute; left: 0;
+    color: var(--gold);
+    font-size: 10px;
+    top: 7px;
+  }
+
+  /* ── HIGHLIGHT BAND ── */
+  .highlight-band {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 4px;
+    padding: 24px 28px;
+    margin: 28px 0;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .highlight-band-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+  }
+
+  .highlight-band-text {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.88);
+  }
+
+  .highlight-band-text strong {
+    color: var(--gold);
+  }
+
+  /* ── CTA / FOOTER ── */
+  .guide-footer {
+    background: var(--navy-dark);
+    padding: 50px 70px;
+    color: var(--white);
+  }
+
+  .footer-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .footer-cta-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .footer-cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .footer-cta-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+    max-width: 420px;
+  }
+
+  .footer-btn {
+    background: var(--gold);
+    color: var(--navy-dark);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border-radius: 3px;
+    text-decoration: none;
+    white-space: nowrap;
+    display: inline-block;
+  }
+
+  .footer-bottom {
+    max-width: 860px;
+    margin: 30px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  .footer-tagline-small {
+    font-size: 10px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.1em;
+  }
+
+  .footer-url {
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* ── TOC ── */
+  .toc-page {
+    background: var(--cream);
+    padding: 60px 70px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .toc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-burnt);
+    margin-bottom: 32px;
+  }
+
+  .toc-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px dotted var(--cream-deep);
+  }
+
+  .toc-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--gold-pale);
+    font-weight: 700;
+    flex-shrink: 0;
+    width: 28px;
+  }
+
+  .toc-item-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--navy);
+    flex: 1;
+  }
+
+  .toc-item-sub {
+    font-size: 12px;
+    color: var(--slate);
+    opacity: 0.7;
+  }
+
+  /* ── JURISDICTION BADGE ── */
+  .jurisdiction-badges {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .badge {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  .badge-ca { background: var(--teal); color: white; }
+  .badge-us { background: var(--slate); color: white; }
+  .badge-both { background: var(--gold); color: var(--navy-dark); }
+
+  /* ── QUICK REFERENCE CARD ── */
+  .quick-ref {
+    background: var(--navy);
+    border-radius: 6px;
+    padding: 28px 32px;
+    margin: 28px 0;
+  }
+
+  .quick-ref-title {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+
+  .quick-ref-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .quick-ref-item {
+    background: rgba(255,255,255,0.05);
+    border-radius: 4px;
+    padding: 14px 16px;
+    border-top: 2px solid var(--gold);
+  }
+
+  .quick-ref-item-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .quick-ref-item-text {
+    font-size: 12px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.6;
+  }
+
+  /* Small bold inline */
+  strong { font-weight: 600; color: var(--navy); }
+  em { font-style: italic; color: var(--slate); }
+
+  /* spacing helpers */
+  .mt-sm { margin-top: 12px; }
+  .mt-md { margin-top: 24px; }
+  .mb-sm { margin-bottom: 12px; }
+  .mb-md { margin-bottom: 24px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- COVER PAGE -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-brand">
+    <div class="cover-logo-text">CompAlchemist</div>
+    <div class="cover-tagline">Expert-built. AI-powered. Unmistakably human.</div>
+  </div>
+
+  <!-- decorative hex -->
+  <svg class="cover-hex" width="280" height="320" viewBox="0 0 280 320" fill="none">
+    <polygon points="140,10 270,80 270,240 140,310 10,240 10,80" stroke="#C6A43F" stroke-width="1.5" fill="none"/>
+    <polygon points="140,40 245,100 245,220 140,280 35,220 35,100" stroke="#C6A43F" stroke-width="0.5" fill="none"/>
+  </svg>
+
+  <div class="cover-center">
+    <div class="cover-label">Manager Resource Guide</div>
+    <h1 class="cover-title">Supporting Employees<br>Through <span>Medical Leave</span></h1>
+    <p class="cover-subtitle">A practical, empathetic guide for managers navigating employee health disclosures, leave initiation, connected support, and confident return-to-work conversations — with HR leading the way.</p>
+
+    <div class="cover-pillars">
+      <div class="cover-pillar">
+        <div class="cover-pillar-num">5</div>
+        <div class="cover-pillar-label">Core Sections</div>
+      </div>
+      <div class="cover-pillar">
+        <div class="cover-pillar-num">CA+US</div>
+        <div class="cover-pillar-label">Jurisdictions</div>
+      </div>
+      <div class="cover-pillar">
+        <div class="cover-pillar-num">10+</div>
+        <div class="cover-pillar-label">Manager Scripts</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-footer">
+    <p class="cover-note">This guide is intended as a practical resource for people managers. It does not constitute legal advice. Always involve your HR team and refer to your organization's leave policies and applicable legislation.</p>
+    <div class="cover-edition">
+      <div>Canada &amp; United States Edition</div>
+      <div style="margin-top:4px;">© 2025 CompAlchemist</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- TABLE OF CONTENTS -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="toc-page" style="padding-top:50px; padding-bottom:50px;">
+  <div class="toc-title">What's Inside</div>
+
+  <div class="toc-row">
+    <div class="toc-num">1</div>
+    <div>
+      <div class="toc-item-title">When an Employee Discloses a Health Issue</div>
+      <div class="toc-item-sub">What to say, what not to say, and how to create a safe space</div>
+    </div>
+  </div>
+
+  <div class="toc-row">
+    <div class="toc-num">2</div>
+    <div>
+      <div class="toc-item-title">Starting the Leave Process</div>
+      <div class="toc-item-sub">Your role, HR's role, and the steps to take right away</div>
+    </div>
+  </div>
+
+  <div class="toc-row">
+    <div class="toc-num">3</div>
+    <div>
+      <div class="toc-item-title">Staying Connected Without Crossing Boundaries</div>
+      <div class="toc-item-sub">HR-led communication model with the manager's supportive role</div>
+    </div>
+  </div>
+
+  <div class="toc-row">
+    <div class="toc-num">4</div>
+    <div>
+      <div class="toc-item-title">Planning a Successful Return to Work</div>
+      <div class="toc-item-sub">Gradual return, accommodation conversations, and team reintegration</div>
+    </div>
+  </div>
+
+  <div class="toc-row" style="border-bottom: none;">
+    <div class="toc-num">5</div>
+    <div>
+      <div class="toc-item-title">Common Manager Mistakes — and How to Avoid Them</div>
+      <div class="toc-item-sub">The missteps that derail leaves and damage trust</div>
+    </div>
+  </div>
+
+  <div class="callout callout-insight" style="margin-top: 36px;">
+    <div class="callout-title">⚑ The Golden Rule of This Guide</div>
+    <p>Your role as a manager is not to manage the leave — that's HR's job. Your role is to manage the <em style="color:var(--gold);">relationship</em>. Every section of this guide reflects that principle.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 1 — DISCLOSURE -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="guide-page" style="margin-top:30px;">
+  <div class="section-header">
+    <div class="section-number">01</div>
+    <div class="section-title-block">
+      <div class="section-phase">The Disclosure Moment</div>
+      <h2 class="section-title">When an Employee Tells You They're Struggling</h2>
+    </div>
+  </div>
+
+  <div class="jurisdiction-badges">
+    <span class="badge badge-both">Canada &amp; US</span>
+  </div>
+
+  <p class="section-intro">
+    This is often the hardest moment. An employee pulls you aside — or sends a hesitant message — and tells you something is wrong with their health. They may be emotional, uncertain, or visibly frightened. How you respond in the next five minutes shapes everything that follows: their trust in you, their willingness to engage with the leave process, and their eventual return.
+  </p>
+
+  <p style="font-size:14px; color:var(--slate); line-height:1.7; margin-bottom:24px;">
+    You don't need to have answers. You don't need to understand the diagnosis. <strong>You need to make the person feel heard, safe, and supported</strong> — and then let HR take it from there.
+  </p>
+
+  <div class="highlight-band">
+    <div class="highlight-band-icon">🔑</div>
+    <div class="highlight-band-text"><strong>You are not the diagnostician, the benefits administrator, or the accommodation approver.</strong> You are the human bridge between this employee and the support systems that exist to help them. Be that bridge — warmly, and without overstepping.</div>
+  </div>
+
+  <h3 style="font-size:15px; color:var(--navy); margin: 28px 0 16px; font-weight:600;">What to Say: Starter Scripts</h3>
+
+  <div class="script-card">
+    <div class="script-label">When they first disclose</div>
+    <div class="script-text">"Thank you for trusting me with this. I want you to know I'm here for you. You don't have to have all the answers right now — let's figure this out together, and I'll connect you with HR so we can make sure you have everything you need."</div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-label">If they become emotional</div>
+    <div class="script-text">"Take your time. There's no rush. I want to make sure you feel comfortable, and nothing about this conversation has to be solved today."</div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-label">If they ask "what happens now?"</div>
+    <div class="script-text">"The next step is connecting with HR — they'll walk you through your options and what the leave process looks like. I'll reach out to them today on your behalf, if that works for you. You won't have to navigate this alone."</div>
+  </div>
+
+  <div class="do-dont-grid">
+    <div class="do-box">
+      <div class="do-dont-label"><div class="do-dont-icon">✓</div> Say This</div>
+      <ul class="do-dont-list">
+        <li>"Thank you for telling me."</li>
+        <li>"Your health comes first."</li>
+        <li>"Take the time you need."</li>
+        <li>"I'll connect you with HR — they're there to help."</li>
+        <li>"Your job will be here when you're ready."</li>
+        <li>"You don't have to share more than you're comfortable with."</li>
+      </ul>
+    </div>
+    <div class="dont-box">
+      <div class="do-dont-label"><div class="do-dont-icon">✗</div> Avoid This</div>
+      <ul class="do-dont-list">
+        <li>"What exactly is wrong with you?"</li>
+        <li>"How long do you think you'll be off?"</li>
+        <li>"This is really bad timing."</li>
+        <li>"Can you train someone before you go?"</li>
+        <li>"Have you tried [treatment/remedy]?"</li>
+        <li>"I had something similar — here's what I did."</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-remember">
+    <div class="callout-title">🔒 Privacy First — Canada &amp; US</div>
+    <p>You are not entitled to a diagnosis. In Canada, human rights legislation and provincial privacy laws protect medical information. In the US, the ADA and HIPAA create similar protections. Your employee only needs to tell you enough to trigger the leave process. Asking for more creates liability. When in doubt: <strong>ask less, support more.</strong></p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 2 — INITIATING THE LEAVE -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="guide-page">
+  <div class="section-header">
+    <div class="section-number">02</div>
+    <div class="section-title-block">
+      <div class="section-phase">Leave Initiation</div>
+      <h2 class="section-title">Starting the Leave Process: Your Role vs. HR's Role</h2>
+    </div>
+  </div>
+
+  <div class="jurisdiction-badges">
+    <span class="badge badge-ca">Canada</span>
+    <span class="badge badge-us">United States</span>
+  </div>
+
+  <p class="section-intro">Once an employee discloses a health issue that may require time away, the clock starts. There are things you must do, things HR must do, and — critically — things you should stay out of entirely. This section maps that clearly.</p>
+
+  <div class="two-col">
+    <div class="info-card">
+      <div class="info-card-title">✅ Manager's Responsibility</div>
+      <ul class="info-list">
+        <li>Notify HR promptly — same day if possible</li>
+        <li>Treat the disclosure as confidential</li>
+        <li>Ensure the employee knows HR is their point of contact</li>
+        <li>Document the date of disclosure (for your records only)</li>
+        <li>Begin thinking about operational coverage — quietly</li>
+        <li>Communicate to your team only what is necessary (absence, not diagnosis)</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title">🏢 HR's Responsibility</div>
+      <ul class="info-list">
+        <li>Provide the employee with leave paperwork and options</li>
+        <li>Determine applicable leave type (medical, STD, FMLA/provincial)</li>
+        <li>Coordinate with benefits/payroll for income continuation</li>
+        <li>Obtain medical documentation (where legally permissible)</li>
+        <li>Track leave duration and maintain the employee file</li>
+        <li>Manage accommodation documentation upon return</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="font-size:15px; color:var(--navy); margin: 28px 0 16px; font-weight:600;">Your Action Checklist: First 48 Hours</h3>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-title">Contact HR the same day</div>
+        <div class="step-body">Send a brief, factual message. Don't include diagnosis details — just let HR know an employee has disclosed a health situation that may require leave and needs to connect with them. Let them lead from here.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-title">Confirm the employee has HR's contact information</div>
+        <div class="step-body">Don't assume they know who to call or what to do. Provide the name, email, and/or phone number for your HR contact or leave administrator. Ask if they'd like you to make a warm introduction.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-title">Address urgent operational needs — internally, quietly</div>
+        <div class="step-body">Review current workload and identify what's most time-sensitive. Begin thinking about interim coverage or redistribution. <strong>Do not mention the reason</strong> for the upcoming absence to colleagues at this stage.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-title">Agree on what the employee wants to tell the team</div>
+        <div class="step-body">This is their story to tell. Ask: "What would you feel comfortable with me sharing with the team?" Respect their answer completely. A simple "She'll be taking some personal time off" is often enough.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <div class="step-title">Set a brief check-in with the employee before leave begins</div>
+        <div class="step-body">Before they go, have a short conversation to confirm: transition notes, who to contact in their absence, and how they'd like to be acknowledged on their first day back. Keep it practical and warm.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-warning">
+    <div class="callout-title">⚠️ A Note on Jurisdiction</div>
+    <p>In <strong>Canada</strong>, medical leaves are governed by a mix of provincial employment standards (e.g., Ontario's ESA, BC's Employment Standards Act) and federal law for federally regulated workplaces. In the <strong>United States</strong>, FMLA applies to employers with 50+ employees, but state laws (like California's CFRA) may provide broader rights. <strong>HR will navigate this for you.</strong> Your job is not to know the law — it's to refer quickly and stay in your lane.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 3 — STAYING CONNECTED -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="guide-page">
+  <div class="section-header">
+    <div class="section-number">03</div>
+    <div class="section-title-block">
+      <div class="section-phase">During the Leave</div>
+      <h2 class="section-title">Staying Connected Without Crossing Boundaries</h2>
+    </div>
+  </div>
+
+  <div class="jurisdiction-badges">
+    <span class="badge badge-both">Canada &amp; US</span>
+  </div>
+
+  <p class="section-intro">During leave, the instinct to "check in" can come from a genuinely caring place — but without the right guardrails, it can feel like surveillance, create pressure to return early, or expose the company to legal risk. The model recommended here is simple: <strong>HR leads all formal communication. The manager plays a warm, secondary role.</strong></p>
+
+  <div class="quick-ref">
+    <div class="quick-ref-title">📋 The HR-Led Communication Model</div>
+    <div class="quick-ref-grid">
+      <div class="quick-ref-item">
+        <div class="quick-ref-item-title">HR's Role</div>
+        <div class="quick-ref-item-text">All formal check-ins, leave status updates, paperwork, accommodation discussions, and return planning conversations.</div>
+      </div>
+      <div class="quick-ref-item">
+        <div class="quick-ref-item-title">Manager's Role</div>
+        <div class="quick-ref-item-text">One brief personal (non-work) message early in the leave. One near the anticipated return. Nothing in between unless the employee initiates.</div>
+      </div>
+      <div class="quick-ref-item">
+        <div class="quick-ref-item-title">The Rule</div>
+        <div class="quick-ref-item-text">If it's about work — workload, projects, teammates, timelines — it should not come from you. Route it through HR or wait until return.</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size:15px; color:var(--navy); margin: 28px 0 16px; font-weight:600;">What "Personal" Contact Looks Like</h3>
+
+  <div class="script-card">
+    <div class="script-label">Early in the leave (Week 1–2)</div>
+    <div class="script-text">"Hi [Name], I just wanted to reach out to let you know we're thinking of you. You don't need to respond to this — I just wanted you to hear that you're missed and that there's no pressure from our side. Take care of yourself."</div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-label">Near the anticipated return date (HR will advise timing)</div>
+    <div class="script-text">"Hi [Name], HR mentioned your return is coming up soon. I wanted to check in personally to say we're looking forward to having you back, and we'll make sure the transition feels comfortable. HR will be in touch about the details — I just wanted you to hear it from me too."</div>
+  </div>
+
+  <div class="do-dont-grid">
+    <div class="do-box">
+      <div class="do-dont-label"><div class="do-dont-icon">✓</div> Appropriate Contact</div>
+      <ul class="do-dont-list">
+        <li>A brief, warm personal message (no reply expected)</li>
+        <li>A birthday or holiday acknowledgment if culturally appropriate</li>
+        <li>Responding to contact the employee initiates</li>
+        <li>Coordinating with HR if you're asked to participate in a return plan</li>
+      </ul>
+    </div>
+    <div class="dont-box">
+      <div class="do-dont-label"><div class="do-dont-icon">✗</div> Over-Reach to Avoid</div>
+      <ul class="do-dont-list">
+        <li>Sending work updates, project status, or task reminders</li>
+        <li>Asking how treatment is going or when they'll be back</li>
+        <li>Copying them on team emails "just to keep them in the loop"</li>
+        <li>Contacting them more than twice during a leave</li>
+        <li>Reaching out because a project is struggling without them</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-insight">
+    <div class="callout-title">💡 The Pressure Test</div>
+    <p>Before sending any message, ask yourself: "Could this make the employee feel guilty about being off, or pressure them to return sooner?" If the answer is yes — or even maybe — <strong>don't send it.</strong> Route it through HR instead, or hold it until they're back.</p>
+  </div>
+
+  <h3 style="font-size:15px; color:var(--navy); margin: 28px 0 16px; font-weight:600;">Managing Your Team During the Absence</h3>
+
+  <div class="two-col">
+    <div class="info-card">
+      <div class="info-card-title">What to Tell Your Team</div>
+      <ul class="info-list">
+        <li>That a team member is on a leave of absence</li>
+        <li>The general timeframe (if known)</li>
+        <li>Who is covering key responsibilities in the interim</li>
+        <li>That questions about the leave should be directed to you — not the employee</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title">What NOT to Tell Your Team</div>
+      <ul class="info-list">
+        <li>The reason for the leave (medical or otherwise)</li>
+        <li>Any details about the employee's health or diagnosis</li>
+        <li>Speculation about the duration or prognosis</li>
+        <li>Any hint that the leave is burdensome or inconvenient</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 4 — RETURN TO WORK -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="guide-page">
+  <div class="section-header">
+    <div class="section-number">04</div>
+    <div class="section-title-block">
+      <div class="section-phase">Return-to-Work Planning</div>
+      <h2 class="section-title">Welcoming Someone Back With Confidence and Care</h2>
+    </div>
+  </div>
+
+  <div class="jurisdiction-badges">
+    <span class="badge badge-both">Canada &amp; US</span>
+  </div>
+
+  <p class="section-intro">Return to work is not a single moment — it's a transition. Done well, it rebuilds confidence, restores belonging, and sets the employee up for long-term success. Done poorly, it can undo months of recovery or trigger a second leave. Your job is to make the return feel <em>normal, not ceremonial, and never awkward.</em></p>
+
+  <div class="highlight-band">
+    <div class="highlight-band-icon">🤝</div>
+    <div class="highlight-band-text"><strong>HR owns the return-to-work plan.</strong> They'll confirm the official return date, coordinate any accommodations, and prepare any documentation. Your role is to make the employee feel genuinely welcomed — not interrogated, not pitied, and not overwhelmed on day one.</div>
+  </div>
+
+  <h3 style="font-size:15px; color:var(--navy); margin: 28px 0 16px; font-weight:600;">Before They Return: Your Preparation Checklist</h3>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-title">Work with HR on any accommodation requirements</div>
+        <div class="step-body">Accommodations might include a phased return schedule, modified duties, adjusted hours, ergonomic changes, or remote work flexibility. HR will formalize these — you execute them and ensure the team respects them, quietly.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-title">Brief your team — privately and briefly</div>
+        <div class="step-body">Let the team know [Name] is returning. Remind them not to ask about the leave, and to be warm and low-key about the return. No balloons, no big announcements. Just normal.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-title">Prepare a first-week plan</div>
+        <div class="step-body">Map out a reduced or graduated workload for week one. Avoid scheduling any high-stakes meetings, performance conversations, or new projects in the first few days back. Give them space to re-acclimate.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-title">Schedule a private 1:1 for Day 1</div>
+        <div class="step-body">Keep it to 20–30 minutes. This meeting is about <em>them</em>, not about work. Ask how they're feeling, what they need from you, and what would make the transition easiest. Then listen.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-label">Your Day 1 opening statement</div>
+    <div class="script-text">"Welcome back — it's genuinely good to see you. Today is just about getting you comfortable and settled in. There's no pressure to hit the ground running. What would be most helpful for you today?"</div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-label">If they ask about what they missed</div>
+    <div class="script-text">"There's a lot to catch up on, and we'll make sure you get there at a pace that works for you. I've put together a brief summary — let's go through it together whenever you're ready. There's no rush."</div>
+  </div>
+
+  <div class="do-dont-grid">
+    <div class="do-box">
+      <div class="do-dont-label"><div class="do-dont-icon">✓</div> Return Week Wins</div>
+      <ul class="do-dont-list">
+        <li>Check in briefly each day during the first week</li>
+        <li>Honour any accommodation plan — fully, without commentary</li>
+        <li>Let them set the pace for workload ramp-up</li>
+        <li>Treat them exactly as you would any returning team member</li>
+        <li>Ask "what do you need?" not "when will you be at full capacity?"</li>
+      </ul>
+    </div>
+    <div class="dont-box">
+      <div class="do-dont-label"><div class="do-dont-icon">✗</div> Return Week Pitfalls</div>
+      <ul class="do-dont-list">
+        <li>Overloading them with everything that happened while they were gone</li>
+        <li>Asking about their health, treatment, or prognosis</li>
+        <li>Making comments about how hard things were without them</li>
+        <li>Announcing their return to the whole team in a public way</li>
+        <li>Skipping the accommodation plan "just this once"</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-remember">
+    <div class="callout-title">🌱 Graduated Returns Are Common</div>
+    <p>Both Canadian and US frameworks support phased or graduated return-to-work arrangements. This might mean starting at 50% hours, avoiding specific physical tasks, or working remotely for an initial period. <strong>These are not concessions — they are tools for a successful, lasting return.</strong> Employees who return on a supported plan are significantly more likely to stay well and remain employed long-term.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 5 — COMMON MISTAKES -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="guide-page">
+  <div class="section-header">
+    <div class="section-number">05</div>
+    <div class="section-title-block">
+      <div class="section-phase">What Goes Wrong</div>
+      <h2 class="section-title">Common Manager Mistakes — and How to Fix Them</h2>
+    </div>
+  </div>
+
+  <p class="section-intro">Most managers don't make mistakes out of malice — they make them out of discomfort, operational pressure, or the genuine desire to "stay helpful." Here are the patterns we see most often, and what to do instead.</p>
+
+  <div class="mistakes-grid">
+    <div class="mistake-row">
+      <div class="mistake-header">❌ The Mistake</div>
+      <div class="mistake-header">✅ The Fix</div>
+    </div>
+
+    <div class="mistake-row">
+      <div class="mistake-cell problem"><span class="mistake-num">1.</span><strong>Asking too many questions at disclosure.</strong> The manager, trying to "plan ahead," asks about the diagnosis, the expected duration, and whether the employee can train a replacement first.</div>
+      <div class="mistake-cell fix">Express support, get HR involved immediately. You don't need operational information before HR has even spoken to the employee. Ask HR to loop you in on what you need to know for coverage.</div>
+    </div>
+
+    <div class="mistake-row">
+      <div class="mistake-cell problem"><span class="mistake-num">2.</span><strong>Over-communicating during leave.</strong> Weekly "just checking in" messages, CC'ing the employee on team emails, or sharing project updates "so they don't fall behind."</div>
+      <div class="mistake-cell fix">Follow the two-message rule: once early, once near return. Anything else should come from HR or wait. When in doubt, ask yourself: "Would this make them feel pressured?"</div>
+    </div>
+
+    <div class="mistake-row">
+      <div class="mistake-cell problem"><span class="mistake-num">3.</span><strong>Telling the team too much.</strong> Out of a desire to explain the absence or build empathy, the manager shares details about the health condition.</div>
+      <div class="mistake-cell fix">Confirm with the employee what they want shared — then share exactly that and nothing more. "Personal medical leave" is enough. Privacy violations create liability and destroy trust.</div>
+    </div>
+
+    <div class="mistake-row">
+      <div class="mistake-cell problem"><span class="mistake-num">4.</span><strong>Making the return feel like a performance review.</strong> The manager uses Day 1 to discuss missed deliverables, performance gaps, or expectations going forward.</div>
+      <div class="mistake-cell fix">The first day back is a welcome, not an assessment. Keep Day 1 light. Schedule a proper reintegration meeting for Week 2, after the employee has re-acclimated.</div>
+    </div>
+
+    <div class="mistake-row">
+      <div class="mistake-cell problem"><span class="mistake-num">5.</span><strong>Quietly reassigning responsibilities permanently.</strong> The manager moves key projects or promotions while the employee is off, and doesn't restore them upon return.</div>
+      <div class="mistake-cell fix">Any structural changes made during leave should be reviewed for fairness before the employee returns. Consult HR. In both Canada and the US, adverse treatment during or following a leave can constitute discrimination.</div>
+    </div>
+
+    <div class="mistake-row">
+      <div class="mistake-cell problem"><span class="mistake-num">6.</span><strong>Treating the employee as fragile.</strong> Overprotecting the returning employee — not giving feedback, excluding them from decisions, or tiptoeing around them indefinitely.</div>
+      <div class="mistake-cell fix">Return to normal management as quickly as the accommodation plan allows. Treating someone as fragile communicates that you don't believe in their recovery. Respect their resilience.</div>
+    </div>
+
+    <div class="mistake-row" style="border-bottom:none;">
+      <div class="mistake-cell problem" style="border-radius: 0 0 0 4px;"><span class="mistake-num">7.</span><strong>Going off-script out of compassion.</strong> The manager, wanting to help, promises things HR hasn't approved — extended timelines, flexible arrangements, or "don't worry about the paperwork."</div>
+      <div class="mistake-cell fix" style="border-radius: 0 0 4px 0;">All commitments related to the leave, accommodations, or return plan must come from or be approved by HR. Your kindness can create unintended obligations. Always say: "Let me check with HR and confirm that for you."</div>
+    </div>
+  </div>
+
+  <div class="callout callout-insight" style="margin-top: 32px;">
+    <div class="callout-title">✦ The Underlying Theme</div>
+    <p>Almost every mistake on this list comes from the same root cause: <strong style="color:var(--gold);">the manager trying to do more than their role requires.</strong> The best managers in this situation are the ones who understand that doing less — but doing it with genuine warmth — is actually the highest-quality response.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- FINAL REFERENCE CARD -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="guide-page" style="padding-bottom:20px;">
+  <div class="section-header">
+    <div class="section-number"></div>
+    <div class="section-title-block">
+      <div class="section-phase">Quick Reference</div>
+      <h2 class="section-title">Manager's One-Page Cheat Sheet</h2>
+    </div>
+  </div>
+
+  <div class="quick-ref">
+    <div class="quick-ref-title">📌 Your Role at Each Stage</div>
+    <div class="quick-ref-grid">
+      <div class="quick-ref-item">
+        <div class="quick-ref-item-title">At Disclosure</div>
+        <div class="quick-ref-item-text">Listen. Thank. Reassure. Contact HR same day. Keep it confidential. Don't ask for details.</div>
+      </div>
+      <div class="quick-ref-item">
+        <div class="quick-ref-item-title">Initiating Leave</div>
+        <div class="quick-ref-item-text">Notify HR. Confirm employee has HR contact. Plan quiet operational coverage. Agree on team messaging.</div>
+      </div>
+      <div class="quick-ref-item">
+        <div class="quick-ref-item-title">During Leave</div>
+        <div class="quick-ref-item-text">Two messages max. Nothing work-related. HR leads all formal contact. Protect the employee's privacy with your team.</div>
+      </div>
+      <div class="quick-ref-item">
+        <div class="quick-ref-item-title">Return Planning</div>
+        <div class="quick-ref-item-text">Work with HR on accommodations. Prepare the team quietly. Reduce Week 1 workload. Schedule a private Day 1 check-in.</div>
+      </div>
+      <div class="quick-ref-item">
+        <div class="quick-ref-item-title">Day 1 Back</div>
+        <div class="quick-ref-item-text">"Welcome back. What do you need?" Keep it warm, low-key, and entirely about them. No work reviews. No big announcements.</div>
+      </div>
+      <div class="quick-ref-item">
+        <div class="quick-ref-item-title">The Mistake to Avoid</div>
+        <div class="quick-ref-item-text">Doing too much. Over-communicating, over-explaining, over-promising. Refer to HR. Be human. Stay in your lane.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-warning" style="margin-top:28px;">
+    <div class="callout-title">⚠️ Always Involve HR — No Exceptions</div>
+    <p>This guide is a practical resource, not a legal compliance tool. Leave laws in Canada and the US are complex, vary by province/state and employer size, and change regularly. <strong>Your HR team is your single source of truth</strong> on what's required, what's permissible, and what protects both the employee and the organization. When in doubt, ask HR first.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- FOOTER / CTA -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="guide-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-cta-label">Want More Tools Like This?</div>
+      <div class="footer-cta-title">Navigator Tools Built for HR & People Professionals</div>
+      <p class="footer-cta-text">CompAlchemist builds browser-based HR tools designed to give you expert guidance — on leave, pay equity, job levelling, and more — without the consulting fees. Built by an HR practitioner, for HR practitioners.</p>
+    </div>
+    <a class="footer-btn" href="https://www.compalchemist.com" target="_blank">Explore the Tools →</a>
+  </div>
+
+  <div class="footer-bottom">
+    <div>
+      <div class="footer-brand-name">CompAlchemist</div>
+      <div class="footer-tagline-small">Expert-built. AI-powered. Unmistakably human.</div>
+    </div>
+    <div class="footer-url">compalchemist.com · hello@compalchemist.com</div>
+  </div>
+</div>
+
+</body>
+</html>
